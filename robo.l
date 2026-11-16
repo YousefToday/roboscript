@@ -1,0 +1,92 @@
+%option noyywrap yylineno
+
+%{
+#include <stdio.h>
+#include "robo.tab.h"
+
+int lexical_errors = 0;
+%}
+
+%%
+
+"robot"       { return ROBOT; }
+"task"        { return TASK; }
+"begin"       { return BEGIN_KW; }
+"end"         { return END; }
+"num"         { return NUM; }
+"text"        { return TEXT; }
+"const"       { return CONST; }
+"when"        { return WHEN; }
+"then"        { return THEN; }
+"otherwise"   { return OTHERWISE; }
+"repeat"      { return REPEAT; }
+"times"       { return TIMES; }
+"move"        { return MOVE; }
+"turn"        { return TURN; }
+"say"         { return SAY; }
+"scan"        { return SCAN; }
+"do"          { return DO; }
+
+"+"                     { return PLUS; }
+"-"                     { return MINUS; }
+"*"                     { return MULT; }
+"/"                     { return DIV; }
+"%"                     { return MOD; }
+
+":="                    { return ASSIGN; }
+"="                     { return EQ; }
+"!="                    { return NE; }
+"<"                     { return LT; }
+"<="                    { return LE; }
+">"                     { return GT; }
+">="                    { return GE; }
+
+"("                     { return LPAREN; }
+")"                     { return RPAREN; }
+";"                     { return SEMI; }
+","                     { return COMMA; }
+"."                     { return DOT; }
+
+[a-z][a-zA-Z0-9_]*       { return ID; }
+[0-9]+(\.[0-9]+)?       { return NUM_LITERAL; }
+"'"[^'\n]*"'"            { return TEXT_LITERAL; }
+
+\{[^}]*\}               {}
+[ \t\r\n]+              {}
+
+.                       {
+                            printf("Lexical error at line %d: invalid character '%c'\n",
+                                   yylineno, yytext[0]);
+                            lexical_errors = 1;
+                        }
+%%
+void yyerror(const char *message)
+{
+    printf("Syntax error at line %d\n", yylineno);
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+        return 1;
+
+    yyin = fopen(argv[1], "r");
+    if (yyin == NULL)
+        return 1;
+
+
+    int result = yyparse();
+
+    /* 4. Close the input file */
+    fclose(yyin);
+
+    /* 5. Print a completion message only if parsing finished */
+    if (result == 0) {
+        if (lexical_errors)
+            printf("Parsing completed with errors.\n");
+        else
+            printf("Parsing completed successfully: no errors.\n");
+    }
+
+    return (result != 0 || lexical_errors) ? 1 : 0;
+}
