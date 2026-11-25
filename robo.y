@@ -11,7 +11,7 @@ void yyerror(const char *message);
 
 %token ROBOT TASK BEGIN_KW END
 %token NUM TEXT CONST
-%token WHEN THEN OTHERWISE REPEAT TIMES
+%token WHEN THEN ORWHEN OTHERWISE REPEAT TIMES
 %token MOVE TURN SAY SCAN DO
 %token PLUS MINUS MULT DIV MOD
 %token ASSIGN EQ NE LT LE GT GE
@@ -40,7 +40,8 @@ turn_stmt: TURN expression;
 say_stmt: SAY expression_list;
 scan_stmt: SCAN ID;
 call_stmt: DO ID;
-when_stmt: WHEN expression THEN statements END | WHEN expression THEN statements OTHERWISE statements END;
+when_stmt: WHEN expression THEN statements orwhens END | WHEN expression THEN statements orwhens OTHERWISE statements END;
+orwhens: ORWHEN expression THEN statements orwhens| ;
 repeat_stmt: REPEAT exp TIMES statements END;
 
 

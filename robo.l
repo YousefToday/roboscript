@@ -18,6 +18,9 @@ int lexical_errors = 0;
 "const"       { return CONST; }
 "when"        { return WHEN; }
 "then"        { return THEN; }
+
+"orwhen"      { return ORWHEN; } 
+
 "otherwise"   { return OTHERWISE; }
 "repeat"      { return REPEAT; }
 "times"       { return TIMES; }
