@@ -544,11 +544,13 @@ char *yytext;
 #line 1 "robo.l"
 #line 4 "robo.l"
 #include <stdio.h>
+#include <string.h>
 #include "robo.tab.h"
 
 int lexical_errors = 0;
-#line 551 "lex.yy.c"
-#line 552 "lex.yy.c"
+extern int semantic_errors;
+#line 553 "lex.yy.c"
+#line 554 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -765,10 +767,10 @@ YY_DECL
 		}
 
 	{
-#line 10 "robo.l"
+#line 12 "robo.l"
 
 
-#line 772 "lex.yy.c"
+#line 774 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -837,209 +839,209 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "robo.l"
+#line 14 "robo.l"
 { return ROBOT; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 13 "robo.l"
+#line 15 "robo.l"
 { return TASK; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 14 "robo.l"
+#line 16 "robo.l"
 { return BEGIN_KW; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 "robo.l"
+#line 17 "robo.l"
 { return END; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "robo.l"
+#line 18 "robo.l"
 { return NUM; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 17 "robo.l"
+#line 19 "robo.l"
 { return TEXT; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 18 "robo.l"
+#line 20 "robo.l"
 { return CONST; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 19 "robo.l"
+#line 21 "robo.l"
 { return WHEN; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "robo.l"
+#line 22 "robo.l"
 { return THEN; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 22 "robo.l"
+#line 24 "robo.l"
 { return ORWHEN; } 
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "robo.l"
+#line 26 "robo.l"
 { return OTHERWISE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "robo.l"
+#line 27 "robo.l"
 { return REPEAT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 "robo.l"
+#line 28 "robo.l"
 { return TIMES; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 27 "robo.l"
+#line 29 "robo.l"
 { return MOVE; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 "robo.l"
+#line 30 "robo.l"
 { return TURN; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 "robo.l"
+#line 31 "robo.l"
 { return SAY; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 30 "robo.l"
+#line 32 "robo.l"
 { return SCAN; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 31 "robo.l"
+#line 33 "robo.l"
 { return DO; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 33 "robo.l"
+#line 35 "robo.l"
 { return PLUS; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 34 "robo.l"
+#line 36 "robo.l"
 { return MINUS; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 35 "robo.l"
+#line 37 "robo.l"
 { return MULT; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 36 "robo.l"
+#line 38 "robo.l"
 { return DIV; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 37 "robo.l"
+#line 39 "robo.l"
 { return MOD; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 39 "robo.l"
+#line 41 "robo.l"
 { return ASSIGN; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 40 "robo.l"
+#line 42 "robo.l"
 { return EQ; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 41 "robo.l"
+#line 43 "robo.l"
 { return NE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 42 "robo.l"
+#line 44 "robo.l"
 { return LT; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 43 "robo.l"
+#line 45 "robo.l"
 { return LE; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 44 "robo.l"
+#line 46 "robo.l"
 { return GT; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 45 "robo.l"
+#line 47 "robo.l"
 { return GE; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 47 "robo.l"
+#line 49 "robo.l"
 { return LPAREN; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 48 "robo.l"
+#line 50 "robo.l"
 { return RPAREN; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 49 "robo.l"
+#line 51 "robo.l"
 { return SEMI; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 50 "robo.l"
+#line 52 "robo.l"
 { return COMMA; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 51 "robo.l"
+#line 53 "robo.l"
 { return DOT; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 53 "robo.l"
-{ return ID; }
+#line 55 "robo.l"
+{yylval.name = strdup(yytext); return ID; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 54 "robo.l"
+#line 56 "robo.l"
 { return NUM_LITERAL; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 55 "robo.l"
+#line 57 "robo.l"
 { return TEXT_LITERAL; }
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
 YY_RULE_SETUP
-#line 57 "robo.l"
+#line 59 "robo.l"
 {}
 	YY_BREAK
 case 40:
 /* rule 40 can match eol */
 YY_RULE_SETUP
-#line 58 "robo.l"
+#line 60 "robo.l"
 {}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 60 "robo.l"
+#line 62 "robo.l"
 {
                             printf("Lexical error at line %d: invalid character '%c'\n",
                                    yylineno, yytext[0]);
@@ -1048,10 +1050,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 65 "robo.l"
+#line 67 "robo.l"
 ECHO;
 	YY_BREAK
-#line 1055 "lex.yy.c"
+#line 1057 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2068,7 +2070,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 65 "robo.l"
+#line 67 "robo.l"
 
 void yyerror(const char *message)
 {
@@ -2084,19 +2086,17 @@ int main(int argc, char *argv[])
     if (yyin == NULL)
         return 1;
 
-
     int result = yyparse();
-
-    /* 4. Close the input file */
     fclose(yyin);
 
-    /* 5. Print a completion message only if parsing finished */
-    if (result == 0) {
-        if (lexical_errors)
-            printf("Parsing completed with errors.\n");
-        else
-            printf("Parsing completed successfully: no errors.\n");
+    if (result != 0)
+        return 1;
+
+    if (lexical_errors || semantic_errors) {
+        printf("Parsing completed with errors.\n");
+        return 1;
     }
 
-    return (result != 0 || lexical_errors) ? 1 : 0;
+    printf("Parsing completed successfully: no errors.\n");
+    return 0;
 }

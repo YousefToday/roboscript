@@ -2,9 +2,11 @@
 
 %{
 #include <stdio.h>
+#include <string.h>
 #include "robo.tab.h"
 
 int lexical_errors = 0;
+extern int semantic_errors;
 %}
 
 %%
@@ -50,7 +52,7 @@ int lexical_errors = 0;
 ","                     { return COMMA; }
 "."                     { return DOT; }
 
-[a-z][a-zA-Z0-9_]*       { return ID; }
+[a-z][a-zA-Z0-9_]*       {yylval.name = strdup(yytext); return ID; }
 [0-9]+(\.[0-9]+)?       { return NUM_LITERAL; }
 "'"[^'\n]*"'"            { return TEXT_LITERAL; }
 
@@ -77,19 +79,17 @@ int main(int argc, char *argv[])
     if (yyin == NULL)
         return 1;
 
-
     int result = yyparse();
-
-    /* 4. Close the input file */
     fclose(yyin);
 
-    /* 5. Print a completion message only if parsing finished */
-    if (result == 0) {
-        if (lexical_errors)
-            printf("Parsing completed with errors.\n");
-        else
-            printf("Parsing completed successfully: no errors.\n");
+    if (result != 0)
+        return 1;
+
+    if (lexical_errors || semantic_errors) {
+        printf("Parsing completed with errors.\n");
+        return 1;
     }
 
-    return (result != 0 || lexical_errors) ? 1 : 0;
+    printf("Parsing completed successfully: no errors.\n");
+    return 0;
 }
