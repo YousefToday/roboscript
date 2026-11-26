@@ -20,9 +20,7 @@ extern int semantic_errors;
 "const"       { return CONST; }
 "when"        { return WHEN; }
 "then"        { return THEN; }
-
-"orwhen"      { return ORWHEN; } 
-
+"orwhen"      { return ORWHEN; }
 "otherwise"   { return OTHERWISE; }
 "repeat"      { return REPEAT; }
 "times"       { return TIMES; }
@@ -32,39 +30,41 @@ extern int semantic_errors;
 "scan"        { return SCAN; }
 "do"          { return DO; }
 
-"+"                     { return PLUS; }
-"-"                     { return MINUS; }
-"*"                     { return MULT; }
-"/"                     { return DIV; }
-"%"                     { return MOD; }
+"+"           { return PLUS; }
+"-"           { return MINUS; }
+"*"           { return MULT; }
+"/"           { return DIV; }
+"%"           { return MOD; }
 
-":="                    { return ASSIGN; }
-"="                     { return EQ; }
-"!="                    { return NE; }
-"<"                     { return LT; }
-"<="                    { return LE; }
-">"                     { return GT; }
-">="                    { return GE; }
+":="          { return ASSIGN; }
+"="           { return EQ; }
+"!="          { return NE; }
+"<"           { return LT; }
+"<="          { return LE; }
+">"           { return GT; }
+">="          { return GE; }
 
-"("                     { return LPAREN; }
-")"                     { return RPAREN; }
-";"                     { return SEMI; }
-","                     { return COMMA; }
-"."                     { return DOT; }
+"("           { return LPAREN; }
+")"           { return RPAREN; }
+";"           { return SEMI; }
+","           { return COMMA; }
+"."           { return DOT; }
 
-[a-z][a-zA-Z0-9_]*       {yylval.name = strdup(yytext); return ID; }
+[a-z][a-zA-Z0-9_]*      { yylval.name = strdup(yytext); return ID; }
 [0-9]+(\.[0-9]+)?       { return NUM_LITERAL; }
-"'"[^'\n]*"'"            { return TEXT_LITERAL; }
+"'"[^'\n]*"'"           { return TEXT_LITERAL; }
 
 \{[^}]*\}               {}
 [ \t\r\n]+              {}
 
-.                       {
-                            printf("Lexical error at line %d: invalid character '%c'\n",
-                                   yylineno, yytext[0]);
-                            lexical_errors = 1;
-                        }
+. {
+    printf("Lexical error at line %d: invalid character '%c'\n",
+           yylineno, yytext[0]);
+    lexical_errors = 1;
+}
+
 %%
+
 void yyerror(const char *message)
 {
     printf("Syntax error at line %d\n", yylineno);
